@@ -32,7 +32,7 @@
 |```git init```|폴더를 git폴더로 만든다|git init __|
 |```git add __```|git파일을 스테이징시킨다|git add __|
 |```git add .```| 현재 디렉터리에 있는 모든파일을 스테이징한다|git add .
-|```git commit```|git파일을 저장(촬영)한다|git commit|
+|```git commit -m __```|git파일을 저장(촬영)한다|git commit -m __|
 |```git status```|git파일들 상태를  보여준다|git status
 |```git log```|git 파일들의 변경사항을 보여준다|git log
 ---
