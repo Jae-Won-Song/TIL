@@ -6,8 +6,15 @@
   > git config --global user.name "____"  →  github에 등록할 자신의 서명
 
   > git config --global user.email "email" →  github에 등록할 자신의 email주소
+ ---
   
-
+  ## ※ WARNING
+1. **현재 위치를 잘 확인한다.**
+2. **Repo 안에서 repo (master)를 만들지 않는다. (Master 떠있으면 `git init` X)**
+3. **Home(`~`)에서 init 하지 않는다.**
+4. **(지금은) github에서 직접 수정하지 않는다.**
+​
+---
 
 ## git의 개념과 학습 이유
 
@@ -60,7 +67,20 @@
 |```git push```|git hub에 commit파일 등록|git push <저장소이름> <파일명>|
 |```git pull```|git hub에 등록한 commit파일 불러오기|git pull <저장소이름> <파일명>|
 |```git clone```|git을 처음 사용한 컴퓨터에 git hub파일 불러오기|git clone [REPO_URL] [DIR]|
+|```git remote -v```|github의 원격저장소 목록을 확인한다|git remote -v|
 
 ---
+## git hub commit 과정
+```
+1. git add .
+   1. 수정, 생성한 git 파일을 스테이징한다.
+2. git commit -m <파일이름>
+   1. 스테이징 된 파일을 스냅샷한다. 
+3. git push <저장소이름> <파일이름>
+```
+---
 
- 
+## git hub pull 과정
+```
+1. git pull <저장소이름> <파일명>
+```
