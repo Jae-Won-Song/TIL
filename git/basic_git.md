@@ -53,7 +53,9 @@
 |```git commit -m __```|git파일을 저장(촬영)한다|git commit -m __|
 |```git status```|git파일들 상태를  보여준다|git status|
 |```git log```|git 파일들의 변경사항을 보여준다|git log|
+|```cat ~/.gitconfig```|git에 등록되어있는 이메일과 서명을 본다|cat ~/.gitconfig|
 |```q```|git log 상태에서 빠져나온다|q|
-
+|```git remote add __ <URL.>```|
+|
 ---
 
