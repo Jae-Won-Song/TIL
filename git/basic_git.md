@@ -48,14 +48,18 @@
 |명령어|설명|예시|
 |-|-|-|
 |```git init```|폴더를 git폴더로 만든다|git init __|
-|```git add __```|git파일을 스테이징시킨다|git add __|
+|```git add <스테이징시킬 디렉터리>```|git파일을 스테이징시킨다|git add __|
 |```git add .```| 현재 디렉터리에 있는 모든파일을 스테이징한다|git add .|
-|```git commit -m __```|git파일을 저장(촬영)한다|git commit -m __|
+|```git commit -m```|git파일을 저장(촬영)한다|git commit -m <파일명>|
 |```git status```|git파일들 상태를  보여준다|git status|
 |```git log```|git 파일들의 변경사항을 보여준다|git log|
+|```git log--oneline```|git log를 압축하여 보여준다|git log --oneline|
 |```cat ~/.gitconfig```|git에 등록되어있는 이메일과 서명을 본다|cat ~/.gitconfig|
 |```q```|git log 상태에서 빠져나온다|q|
-|```git remote add __ <URL.>```|
-|
+|```git remote add```|git hub에 원격저장소를 추가한다|git remote add <저장소이름> <URL.>|
+|```git push```|git hub에 commit파일 등록|git push <저장소이름> <파일명>|
+|```git pull```|git hub에 등록한 commit파일 불러오기|git pull <저장소이름> <파일명>|
+|```git clone```|git을 처음 사용한 컴퓨터에 git hub파일 불러오기|git clone [REPO_URL] [DIR]|
+
 ---
 
