@@ -41,8 +41,6 @@ print('구문')
 print('hello world welcome(\)(;)
 my world')
 ```
-
-
 >웹 브라우저를 실행
 ```
 import webbrowser 
