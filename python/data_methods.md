@@ -279,3 +279,21 @@
 
 ---
 
+## 추가 및 삭제
+
+```
+.pop(key[, default])
+```
+- key가 딕셔너리에 있으면 제거하고 그 값을 돌려줍니다. 그렇지 않으면 default를 반환합니다.
+  - default가 없는 상태에서 해당 key가 딕셔너리에 경우, KeyError가 발생합니다.
+
+---
+
+```
+.update([other])
+```
+- other 가 제공하는 key,value 쌍으로 딕셔너리를 덮어씁니다. 
+    - other 는 다른 딕셔너리나 key/value 쌍으로 되어있는 모든 iterable을 사용 가능
+
+---
+
