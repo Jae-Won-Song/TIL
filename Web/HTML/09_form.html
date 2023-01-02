@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+</head>
+<body>
+    <h1>Form</h1>
+    <form action="목적지(URL)" method="POST">
+
+    </form>
+    <!-- input => inline -->
+    <form action="">
+        <div>
+        <!-- label 은 input의 id와 맞춰야 한다. -->
+        <label for="my-email">이메일 : </label>    
+        <input id="my-email" type ="email" placeholder="example@gmail.com" >
+        </div>
+        <div>
+        <label for="my-pw">패스워드 : </label>          
+        <input id="my-pw" type="password">
+        </div>
+        <div>
+        <label for="my-name">이름 : </label>   
+        <input id="my-name" type="text" required autofocus>
+        </div>
+        <div>
+        <label for="age">나이:</label>
+        <input id="age" type="number" value="0">
+        </div>
+        <div>
+            <input type="radio" name="gender" value="Male">남자
+            <input type="radio" name="gender" value="Female">여자
+            <input type="radio" name="gender" value="Unknown">모름
+        </div>
+        <div>
+            <input type="checkbox" value="apple">사과            
+            <input type="checkbox" value="banana">바나나
+            <input type="checkbox" value="sb">딸기
+        </div>
+        <div>
+            <textarea name="" id="" cols="30" rows="10">기존 내용</textarea>
+        </div>
+        <div>
+            <input type="submit" value="출제">
+        </div>
+    </form>
+</body>
+</html>
