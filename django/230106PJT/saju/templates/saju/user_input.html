@@ -1,0 +1,36 @@
+{% include 'base.html' %}
+{% block content %}
+{% csrf_token %}
+
+<h1>운세</h1>
+
+<form action="" method="post">{% csrf_token %}
+    이름:
+    <input type="text"><br>
+    나이:
+    <input type="numbers" name="이름"><br>
+    생년월일:
+    <input type="date" min="1900-01-01" max="2023-12-31"><br>
+    성별:
+    <label>남자
+    <input type="radio" name="성별" value="남자">
+    </label>
+    <label>여자
+    <input type="radio" name="성별" id="여자">
+    </label>
+    <br><br>
+
+    <input type="submit" value="제출">
+
+</form>
+
+
+{% endblock content %}
+
+
+    
+
+
+
+
+
