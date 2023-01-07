@@ -1,10 +1,10 @@
 {% include 'base.html' %}
 {% block content %}
-{% csrf_token %}
+
 
 <h1>운세</h1>
 
-<form action="" method="post">{% csrf_token %}
+<form action={% url 'data:user_output' %} method="post">{% csrf_token %}
     이름:
     <input type="text"><br>
     나이:

@@ -6,7 +6,8 @@ from . import views
 app_name = 'saju'
 
 urlpatterns = [
-    path('', views.user_input, name = 'saju'),
+    path('user_input/', views.user_input, name = 'saju'),
+    path('user_output/', views.user_output, name = 'saju'),
     
 ]
 
