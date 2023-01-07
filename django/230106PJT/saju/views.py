@@ -23,10 +23,13 @@ def user_output(request):
     "오늘은 자신과 상대방의 소통이 잘 될 것으로 예상됩니다. 상대방의 생각과 의견을 잘 수용하고, 상호 이해가 잘 될 수 있는 기회가 생길 것입니다.",
     "오늘은 자신의 사랑 생활에 있어서 일부 어려움이 있을 수 있습니다. 상대방과의 의견 차이가 생길 수 있고, 조금은 시간이 걸리는 일도 있을 수 있습니다. 그러나 소통과 이해를 통해 극복할 수 있는 하루입니다."
   ]
+    #  id = request.POST['name'], id = request.POST['age'], id = request.POST['data']
     print(request.POST['username'], request.POST[''])
-    return render(request, 'saju/user_output.html', horoscopes)
+    return render(request, 'user_input.html', horoscopes)
 
 
+# random import 사용
+# 받아올 값 id 지정
 
 
 
