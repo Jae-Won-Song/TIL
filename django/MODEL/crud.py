@@ -42,3 +42,4 @@ article.save()
 # Delete / Destroy (삭제)
 article = Article.objects.get(id=3)  # 먼저 삭제할 게시글을 고른다.
 article.delete()
+
