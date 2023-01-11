@@ -1,5 +1,11 @@
 from board.models import Article
 
+#  아티클 생성 전
+# python manage.py makemigrations,
+# python manege.py makemigrate 으로 테이블 생성!
+
+
+
 
 # Create 
 
