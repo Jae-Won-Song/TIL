@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ article.title }} ({{article.comment_set.count}})</h1>
+<p>{{ article.content }}</p>
+<div>
+    <button>수정</button>
+    <button>삭제</button>
+</div>
+<hr>
+{% include 'board/_comment_form.html' %}
+{% include 'board/_comment_list.html' %}
+{% endblock content %}

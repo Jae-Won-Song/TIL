@@ -1,0 +1,16 @@
+{% comment %} 댓글 목록 조회, 댓글 삭제 {% endcomment %}
+
+
+<ul>
+
+    {% for comment in article.comment_set.all %}
+    <li>
+        {{ comment.content }}
+        <form action="{% url 'board:delete_comment' article.pk comment.pk %}" method="POST" style="display: inline-block;">
+        {% csrf_token %}
+        <button>[X]</button>
+    </form>
+    </li>
+        
+    {% endfor %}
+</ul>
