@@ -5,11 +5,14 @@
 
     {% for comment in article.comment_set.all %}
     <li>
-        {{ comment.content }}
+        {{comment.user.username}} - {{ comment.content }} 
+        {% if request.user == comment.user %}
+        
         <form action="{% url 'board:delete_comment' article.pk comment.pk %}" method="POST" style="display: inline-block;">
-        {% csrf_token %}
-        <button>[X]</button>
-    </form>
+            {% csrf_token %}
+            <button>[X]</button>
+        </form>
+        {% endif %}
     </li>
         
     {% endfor %}

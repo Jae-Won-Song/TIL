@@ -7,11 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <div>
-        <a href="{% url 'board:create_article' %}">New Article</a>
-    </div>
-    
-    {% block content %} {% endblock content %}
+    <ul>
+        <li>
+            <a href="{% url 'board:article_index' %}">Home</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li>
+            <a href="{% url 'board:create_article' %}">New Article</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'accounts:signup' %}">Signup</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:login' %}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+    {{request.user.is_authenticated}}
+    {% block content %}{% endblock content %}
 </body>
 </html>
