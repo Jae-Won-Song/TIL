@@ -1,0 +1,57 @@
+<!-- polls/question_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ question.title }}</h1>
+<p>by - {{ question.user.username }} ( {{ question.user.mbti }} )</p>
+<!-- 현재 이 화면을 보는 사람이, 해당 question의 작성자일 경우에만 보여주자 -->
+{% if request.user == question.user %}
+<div>
+    <a href="{% url 'polls:update_question' question.pk %}">
+        <button>수정</button>
+    </a>
+</div>
+<div>
+    <form action="{% url 'polls:delete_question' question.pk %}" method="POST">
+        {% csrf_token %}
+        <button>삭제</button>
+    </form>
+</div>
+{% endif %}
+
+<hr>
+
+<form action="{% url 'polls:create_reply' question.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button>Reply!</button>
+</form>
+
+<ul>
+    {% for reply in question.reply_set.all %}
+    <li>
+        {{ reply.content }} - ({{ reply.vote }})
+        
+        {% if request.user != reply.user %}
+        <form action="{% url 'polls:reply_upvote' question.pk reply.pk %}" 
+              method="POST"
+              style="display: inline-block;">
+            {% csrf_token %}
+            <button>+1</button>
+        </form>
+        {% else %}
+        <form action=""
+              method="POST"
+              style="display: inline-block;">
+            {% csrf_token %}
+            <button>삭제</button>
+        </form>
+        {% endif %}
+
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock content %}
