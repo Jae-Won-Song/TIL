@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li><a href="{% url 'board:article_index' %}">Home</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'board:create_article' %}">New Article</a></li>
+        <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+        <li><a href="{% url 'accounts:profile' user.username %}">{{ user.username }}'s profile</a></li>
+        {% else %}
+        <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+        <li><a href="{% url 'accounts:login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+    <hr>
+    {% block content %}{% endblock content %}
+</body>
+</html>

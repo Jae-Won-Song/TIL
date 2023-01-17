@@ -1,0 +1,16 @@
+<!-- board/_comment_list.html -->
+
+{% comment %} 댓글 목록 조회 (댓글 삭제) {% endcomment %}
+<ul>
+    {% for comment in article.comments.all %}
+    <li>
+        {{ comment.user }} - {{ comment.content }}
+        {% if request.user == comment.user %}
+        <form action="{% url 'board:delete_comment' article.pk comment.pk %}" method="POST" style="display: inline-block;">
+            {% csrf_token %}
+            <button>삭제</button>
+        </form>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
