@@ -17,8 +17,8 @@ urlpatterns = [
 
     # polls/1/replies/create/
     path('<int:question_pk>/replies/create/', views.create_reply, name='create_reply'),
-    # polls/1/replies/2/upvote/
-    path('<int:question_pk>/replies/<int:reply_pk>/upvote/', views.reply_upvote, name='reply_upvote'),
+    # polls/1/replies/2/vote/
+    path('<int:question_pk>/replies/<int:reply_pk>/vote/', views.vote_reply, name='vote_reply'),
     # polls/1/replies/2/delete/
-    path('<int:question_pk>/replies/<int:delete_pk>/delete/', views.delete_reply, name='delete_reply'),
+    path('<int:question_pk>/replies/<int:reply_pk>/delete/', views.delete_reply, name='delete_reply'),
 ]

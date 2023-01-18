@@ -37,6 +37,7 @@ def question_index(request):
 def question_detail(request, question_pk):
     question = get_object_or_404(Question, pk=question_pk)
     form = ReplyForm()
+    # reply.is_voted(user) => True or False
     context = {
         'question': question,
         'form': form,
@@ -86,21 +87,25 @@ def create_reply(request, question_pk):  # 댓글 저장만 담당
         reply.save()
     return redirect('polls:question_detail', question.pk)
 
+
 @login_required
 @require_POST
-def reply_upvote(request, question_pk, reply_pk):
+def vote_reply(request, question_pk, reply_pk):
+    # FIXME: (지금 안돼서 당장 고쳐야 할 일)
     question = get_object_or_404(Question, pk=question_pk)
-    # 1. reply 하나를 잡고
     reply = get_object_or_404(Reply, pk=reply_pk)
-    # +1 누른사람(요청보낸사람)이 reply작성자가 아닐때만
-    if request.user != reply.user:
-    # 2. reply.vote += 1
-        reply.vote += 1
-    # 3. reply.save()
-        reply.save()
-    # 4. redirect()
+    user = request.user
+    # 답변 작성자는 좋아요 투표 못함
+    if request.user == reply.user:
+        return HttpResponseForbidden('자추는 금지')
+        # is_voted = reply.vote_users.filter(pk=user.pk).exists()
+        # 현재 답변과, 현재 사용자를 DB에 레코드 추가
+    if reply.is_voted(user):
+        reply.vote_users.remove(user)
+    else:
+        reply.vote_users.add(user)
+        
     return redirect('polls:question_detail', question.pk)
-
 
 @login_required
 @require_POST
@@ -108,9 +113,29 @@ def delete_reply(request, question_pk, reply_pk):
     # 댓글 작성자와 삭제버튼 누른사람이 같을 때만 삭제
     question = get_object_or_404(Question, pk=question_pk)
     reply = get_object_or_404(Reply, pk=reply_pk)
-    if reply.user == request.user:
-        return redirect('polls:question_index')
-    else:
-        return HttpResponseForbidden('권한이 없습니다!')
+    if reply.user != request.user:
+        return HttpResponseForbidden('권한이 없습니다.')
     
+    reply.delete()
+    return redirect('polls:question_detail', question_pk)
+
+
+
+
+# @login_required
+# @require_POST
+#def reply_upvote(request, question_pk, reply_pk):
+    # question = get_object_or_404(Question, pk=question_pk)
+    # 1. reply 하나를 잡고
+    # reply = get_object_or_404(Reply, pk=reply_pk)
+    # +1 누른사람(요청보낸사람)이 reply작성자가 아닐때만
+    # if request.user != reply.user:
+    # 2. reply.vote += 1
+    #     reply.vote += 1
+    # 3. reply.save()
+    #     reply.save()
+    # 4. redirect()
+    # return redirect('polls:question_detail', question.pk)
+
+
 

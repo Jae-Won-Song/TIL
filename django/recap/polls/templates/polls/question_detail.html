@@ -1,10 +1,16 @@
 <!-- polls/question_detail.html -->
 {% extends 'base.html' %}
-
 {% block content %}
+{% load polls_extra %}
 
 <h1>{{ question.title }}</h1>
-<p>by - {{ question.user.username }} ( {{ question.user.mbti }} )</p>
+
+<p>by - 
+    <a href="{% url 'accounts:profile' question.user.username %}">
+        {{ question.user.username }} 
+    </a>
+        ( {{ question.user.mbti }} )
+</p>
 <!-- 현재 이 화면을 보는 사람이, 해당 question의 작성자일 경우에만 보여주자 -->
 {% if request.user == question.user %}
 <div>
@@ -21,27 +27,35 @@
 {% endif %}
 
 <hr>
-
+{% if request.user.is_authenticated %}
 <form action="{% url 'polls:create_reply' question.pk %}" method="POST">
     {% csrf_token %}
     {{ form }}
     <button>Reply!</button>
 </form>
+{% endif %}
 
 <ul>
     {% for reply in question.reply_set.all %}
     <li>
-        {{ reply.content }} - ({{ reply.vote }})
+       <a href="{% url 'accounts:profile' reply.user.username %}">{{ reply.user.username }}</a> {{ reply.content }} - ({{ reply.vote_users.count }})
         
         {% if request.user != reply.user %}
-        <form action="{% url 'polls:reply_upvote' question.pk reply.pk %}" 
+        <form action="{% url 'polls:vote_reply' question.pk reply.pk %}" 
               method="POST"
               style="display: inline-block;">
             {% csrf_token %}
+            {% comment %} 사용자가 Reply에 투표를 했는지 {% endcomment %}
+            {% check_user_voted reply request.user as flag %}
+
+            {% if flag %}
+            <button>-1</button>
+            {% else %}
             <button>+1</button>
+            {% endif %}
         </form>
         {% else %}
-        <form action=""
+        <form action="{% url 'polls:delete_reply' question.pk reply.pk %}"
               method="POST"
               style="display: inline-block;">
             {% csrf_token %}
