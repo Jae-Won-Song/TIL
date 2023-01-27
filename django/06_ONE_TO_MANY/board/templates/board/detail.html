@@ -1,0 +1,47 @@
+<!-- board/detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ article.title }} ({{ article.comments.count }})</h1>
+<p>by - {{ article.user.username }}</p>
+
+<p>{{ article.content }}</p>
+
+{% comment %} 좋아요 UI {% endcomment %}
+{% if request.user.is_authenticated %}
+<form action="{% url 'board:like_article' article.pk %}" method="POST">
+  {% csrf_token %}
+  
+  {% if is_like %}
+  <button>좋아요 취소</button>
+  {% else %}
+  <button>좋아요</button>
+  {% endif %}
+
+  <span>+{{ article.like_users.count }}</span>
+</form>
+{% endif %}
+
+{% comment %} 수정/삭제 UI {% endcomment %}
+{% if request.user == article.user %}
+<div>
+  <a href="{% url 'board:update_article' article.pk %}">
+    <button class="btn btn-warning">Update</button>
+  </a>
+</div>
+  
+<div>
+  <form action="{% url 'board:delete_article' article.pk %}" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-danger">Delete</button>
+  </form>
+</div>
+{% endif %}
+<hr>
+<!-- component(부품) -->
+{% if request.user.is_authenticated %}
+{% include 'board/_comment_form.html' %}
+{% endif %}
+
+{% include 'board/_comment_list.html' %}
+{% endblock content %}

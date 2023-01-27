@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h2>나는 {{ user }}</h2>
+<h2>지금 보는 사람은 {{ profile_user }}</h2>
+
+<hr>
+{% if profile_user == user %}
+<form action="{% url 'accounts:delete' %}" method="POST">
+  {% csrf_token %}
+  <button class="btn btn-danger">탈퇴 :(</button>
+</form>
+
+<div>
+  <a href="{% url 'accounts:update' %}">
+    <button class="btn btn-warning">회원정보 수정</button>
+  </a>
+</div>
+
+{% endif %}
+
+{% endblock content %}
+
+

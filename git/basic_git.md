@@ -84,3 +84,60 @@
 ```
 1. git pull <저장소이름> <파일명>
 ```
+
+---
+
+## git 브랜치
+
+- 독립적으로 개발을 진행
+- 개발진행중 생각과 다르게 진행될때, 브랜치를 삭제함으로써 기존의 개발환경으로 돌아갈 수 있음
+- 다른 버전관리프로그램과 달리 git 은 HEAD라는 특수한 포인터가 존재
+---
+``` master 브랜치 (배포 브랜치)는 프로그램이 정상 작동할 때 최종적으로 merge한다.```
+
+---
+- 보유중인 브랜치 확인
+```
+git branch
+```
+- 브랜치 생성
+```
+git branch __
+```
+
+- git 브랜치 이동
+```
+git switch __
+```
+
+- 브랜치들을 합친다
+```
+git merge__
+```
+- git __를 브랜치하고 브랜치한 __로 바로 이동
+```
+git switch -c __
+```
+- Merge 끝난후 남은 브랜치 지우기
+```
+git branch -d __
+```
+- Merge 끝난후 남은 브랜치 강제로 지우기
+```
+git branch -D __
+```
+
+
+---
+Merge의 세가지 경우
+- FastFoward ( + commit X)
+- Automatic Merge ( + commit O)
+- CONFLICT => Manual Commit ( + commit O but 내가함)
+
+---
+
+
+- PUSH함 => 안됨 => - PULL함 => 별일 없음 => PUSH
+
+- PUSH함 => 안됨 => PULL함 => @@ => 고침 => add/commit => PUSH
+- PUSH함 => 잘됨 => 끝

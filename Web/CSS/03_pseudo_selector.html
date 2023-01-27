@@ -1,0 +1,38 @@
+<!-- 03_pseudo_selector -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* a 요소가 hover 상태일 때 */
+    a:hover { color: red; }
+    /* input 요소가 focus 상태일 때 */
+    input:focus { background-color: yellow; }
+    div{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        transition: 2s;
+    }
+    div:hover{
+        border-radius: 50%;
+        background-color: orange;
+    }
+    div.container p.big { color: orange;}
+  </style>
+</head>
+<body>
+    <div>
+        <p>1</p>
+        <p class="big">2</p>
+        <p>3</p>
+    </div>
+    <div class="container">
+        <p>4</p>
+        <p class="big">5</p>
+        <p>6</p>
+    </div>
+  <a href="#">Hover me</a><br><br>
+  <input type="text" placeholder="focus me">
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <p>Logged in as {{request.user}}</p>
+<ul>
+    <li>
+        <a href="{% url 'polls:question_index'%}" >Home</a>
+    </li>
+    {% if not request.user.is_authenticated %}
+    <li>
+        <a href="{% url 'accounts:login' %}">Login</a>
+    </li>
+    <li>
+        <a href="{% url 'accounts:signup' %}">Signup</a>
+    </li>
+    {% else %}
+    <li>
+        <a href="{% url 'polls:create_question' %}">New Question</a>
+    </li>
+    <li>
+        <a href="{% url 'accounts:profile' request.user.username %}">{{request.user.username}}님의 my page</a>
+    </li>
+    <li>
+        <a href="{% url 'accounts:logout' %}">Logout</a>
+    </li>
+    {% endif %}
+</ul>
+    {% block content %}{% endblock content %}
+</body>
+</html>

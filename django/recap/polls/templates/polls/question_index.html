@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Questions</h1>
+<img src="{% static 'tree.jpg' %}" alt="tree">
+
+<ul>
+    {% for question in questions %}
+    <li>
+        <a href="{% url 'polls:question_detail' question.pk %}">
+            {{ question.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock content %}

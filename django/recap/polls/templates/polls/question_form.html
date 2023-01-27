@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <textarea name="text" id="text" cols="30" rows="10">글을 쓰세용</textarea>
+    <button>go</button>
+</form>
+
+
+
+
+{% endblock content %}
+
