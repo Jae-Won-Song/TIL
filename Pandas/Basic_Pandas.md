@@ -62,3 +62,11 @@ ___.head(n)
 - Label_based_indexing(인덱스 기준으로 행 데이터 읽기)
     - loc함수
 ```___.loc[인덱스값, '컬럼값']```
+
+---
+
+numpy axis 축의 개념을 살펴보기
+
+numpy의 전치행렬, 행렬곱(내적)
+
+iloc와 loc를 숙지
