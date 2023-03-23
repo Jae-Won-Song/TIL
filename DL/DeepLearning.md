@@ -14,7 +14,12 @@
 - 신경망 내부에서 자체적으로 데이터의 중요한 Feature를 찾거나 구성함
   - Input -> Feature Extraction -> Regressor or Classfier -> Output
 
+<br>
+<br>
+
 ---
+
+<br>
 
 # 단층 퍼셉트론
 
@@ -38,6 +43,9 @@
 # 다층 퍼셉트론
 
 - 복수의 Perceptron을 연결한 구조
+
+<br>
+<br>
 
 # 인공신경망 (Neural Network)
 
@@ -98,6 +106,9 @@ parameter(세터)를 갱신한다
 - 모델이 복잡해질수록 모델 속에 숨어있는 $\theta$들은 그 개수가 많아지고 절대값이 커지는 경향이 있음(숨겨진 $\theta$들이 값을 갖게 됨)
 - 모델이 복잡해질수록 그 값이 커지는 `세터에 대한 함수를 기존의 Cost function에 더하여` Trade-off관계 속에서 최적값을 찾을 수 있음
 
+<br>
+<br>
+
 ## Regularization Term
 
 ### L1 정규화
@@ -137,5 +148,30 @@ L1 & L2 Regularization = Weight Decay(가중치 감퇴/감소)
 - 전체 데이터를 한번에 다 넣는것 
 
 #### Batch size
-- 1epoch를 n토막으로 나눈것
+- 1 epoch를 n토막으로 나눈것
 
+<br>
+---
+<br>
+<br>
+
+## Avoiding overfitting
+
+### 1. Dropout
+- 신경망에 적용할 수 있는 효율적인 Overfitting 회피방법
+- Training을 진행할 때 매 Batch 마다 `Layer 단위로 일정 비율 만큼의 Neuron을 꺼트리는 방식`으로 적용
+- Test / Inference 단계에는 Dropout을 걷어내어 `전체 Neuron이 살아있는 채로 Inference`를 진행해야함
+- 한개의 그림(데이터)를 쪼개서 생각하기
+  - ex) 고양이 => 귀 코 털 꼬리
+
+<br>
+
+### 2. ★Batch Normalization★
+- Input data에 대해 Standardization과 같은 Normalization을 적용하면 전반적으로 model의 성능이 높아짐
+- 데이터 내 column 들의 Scale에 model이 너무 민감해지는 것을 막아주기 때문
+- Activation function 을 적용하기 전에 Batch normalization 을 먼저 적용
+
+#### Batch Normalization 장점
+- ***학습속도***, 학습결과 개선
+- 가중치 초기값에 크게 의존x
+- overfitting을 억제
