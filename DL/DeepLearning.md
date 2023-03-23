@@ -79,11 +79,45 @@ parameter(세터)를 갱신한다
 1. Weight Initialization
    - Gradient descent를 적용하기 위한 첫 단계는 모든 Parameter 세터를 초기화하는것
    - 초기화 시점의 **작은 차이가 학습의 결과를 뒤바꿀 수 있으므로** 보다 나은 초기화 방식을 모색하게 됨
-     1. Use Xavier Initialization
+     1. Use `Xavier Initialization`
         - 활성화 함수로 Sigmoid 함수나 tanh함수를 사용할 때 적용
         - 다수의 딥 러닝 라이브러리들에 Default로 적용
         - 표준편차가 루트1/n인 정규븐포를 따르도록 가중치 초기화
           - n = # of nodes of previous layer
-     2. He Initialization
+     2. `He Initialization`
         - 활성화 함수가 ReLu함수일 때 적용
         - 표춘편차가 루트2/n인 정규분포를 따르도록 가중치 초기화
+
+
+---
+<!-- 23.03.23 -->
+
+2. Weight regularization
+- 기존의 Gradient Descent 계산 시 y축에 위치해 있던 Cost function은 Training data에 대해 모델이 발생시키는 Error값의 지표
+- Training data만 고려된 이러한 Cost Function을 기준으로 하여 Gradient Descent를 적용하면 Overfitting에 빠질 수 있음
+- 모델이 복잡해질수록 모델 속에 숨어있는 세터들은 그 개수가 많아지고 절대값이 커지는 경향이 있음(숨겨진 세터들이 값을 갖게 됨)
+- 모델이 복잡해질수록 그 값이 커지는 `세터에 대한 함수를 기존의 Cost function에 더하여` Trade-off관계 속에서 최적값을 찾을 수 있음
+
+## Regularization Term
+
+### L1 정규화
+- Lasso
+- 가중치의 `절대값의 합에 비례`하여 가중치에 페널티를 줌
+- 관련성이 없거나 매우 낮은 특성의 가중치를 정확히 0으로 유도, 모델에서 해당 특성을 배제하는 데 도움이 됨 (Feature selection 효과)
+### L2 정규화
+- Ridge
+- 가중치의 `제곱의 합에 비례`하여 가중치에 페널티를 준다
+- 큰 값을 가진 가중치를 더욱 제약하는 효과
+- 가장 `많이 사용`되는 정규화
+  
+```
+L1 & L2 Regularization = Weight Decay(가중치 감퇴/감소)
+```
+
+### Regularization Rate
+- 정규화율(Lambda)
+- 스칼라 값
+- 정규화 함수의 상대적 중요도를 지정
+- 정규화율을 높으민 과적합이 감소하지만 모델의 정확성이 떨어질 수 있음 (Underfitting)
+- 세터의 수가 아주 많은 신경망은 정규화율을 아주 작게 주기도 함
+
