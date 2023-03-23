@@ -20,8 +20,8 @@
 
 - 뉴런을 본따 만든 알고리즘 하나의 단위
 - 2가지 연산을 적용하여 출력값 계산
-  1.  넘겨져 온 데이터와 세터들의 Linear combination +
-      1. 이전 Layer혹은 외부로부터 넘겨져 온 데이터와 각 세터 사이의 Linear Combination
+  1.  넘겨져 온 데이터와 $\theta$들의 Linear combination +
+      1. 이전 Layer혹은 외부로부터 넘겨져 온 데이터와 각 $\theta$ 사이의 Linear Combination
   2.  Activation fuction
       - 이전 레이어의 모든 입력에 대한 가중 합을 받아 `출력값을 생성`하여 `다음 레이어로 전달` 하는 `비선형 함수`
         - 넘겨져 온 데이터와 세터들의 Linear combination 을 계산
@@ -68,16 +68,16 @@ parameter(세터)를 갱신한다
 
 ### Gradient descent 를 활용한 신경망의 학습과정
 
-1. 모든 Parameter 세터를 초기화하고
+1. 모든 Parameter $\theta$를 초기화하고
 2. Cost Function상의 가장 낮은 지점을 향해 나아가며
-3. 선택한 Gradient descent method 를 적용해 세터를 계속 update
+3. 선택한 Gradient descent method 를 적용해 $\theta$를 계속 update
 
 ---
 
 ### Nerual Network Optimization
 
 1. Weight Initialization
-   - Gradient descent를 적용하기 위한 첫 단계는 모든 Parameter 세터를 초기화하는것
+   - Gradient descent를 적용하기 위한 첫 단계는 모든 Parameter $\theta$를 초기화하는것
    - 초기화 시점의 **작은 차이가 학습의 결과를 뒤바꿀 수 있으므로** 보다 나은 초기화 방식을 모색하게 됨
      1. Use `Xavier Initialization`
         - 활성화 함수로 Sigmoid 함수나 tanh함수를 사용할 때 적용
@@ -95,7 +95,7 @@ parameter(세터)를 갱신한다
 2. Weight regularization
 - 기존의 Gradient Descent 계산 시 y축에 위치해 있던 Cost function은 Training data에 대해 모델이 발생시키는 Error값의 지표
 - Training data만 고려된 이러한 Cost Function을 기준으로 하여 Gradient Descent를 적용하면 Overfitting에 빠질 수 있음
-- 모델이 복잡해질수록 모델 속에 숨어있는 세터들은 그 개수가 많아지고 절대값이 커지는 경향이 있음(숨겨진 세터들이 값을 갖게 됨)
+- 모델이 복잡해질수록 모델 속에 숨어있는 $\theta$들은 그 개수가 많아지고 절대값이 커지는 경향이 있음(숨겨진 $\theta$들이 값을 갖게 됨)
 - 모델이 복잡해질수록 그 값이 커지는 `세터에 대한 함수를 기존의 Cost function에 더하여` Trade-off관계 속에서 최적값을 찾을 수 있음
 
 ## Regularization Term
@@ -115,9 +115,27 @@ L1 & L2 Regularization = Weight Decay(가중치 감퇴/감소)
 ```
 
 ### Regularization Rate
-- 정규화율(Lambda)
+- 정규화율($\lambda$)
 - 스칼라 값
 - 정규화 함수의 상대적 중요도를 지정
 - 정규화율을 높으민 과적합이 감소하지만 모델의 정확성이 떨어질 수 있음 (Underfitting)
-- 세터의 수가 아주 많은 신경망은 정규화율을 아주 작게 주기도 함
+- $\theta$의 수가 아주 많은 신경망은 정규화율을 아주 작게 주기도 함
+
+---
+### Stochastic Gradient Descent(확률적 경사 하강법)
+
+**하나의 Training data 마다 Cost를  계산하고 바로 Gradient descent를 적용해 weight를 빠르게 update**
+- 한개의 Training data마다 매번 weight를 갱신하기 때문에 신경망의 성능이 들쑥날쑥 변함 (Cost값이 안정적으로 줄어들지 않음)
+- 최적의 Learning rate를 구하기 위해 일일이 튜닝하고 수렴조건(early-stop)을 조정해야함
+
+### Mini-Batch Stochastic Gradient Descent
+**Training data에서 일정한 크기 == Batch size 의 데이터를 선택하여 Cost function 계산 및 Gradient descent적용**
+- 앞선 두 가지 Gradient descent기법의 단점을 보완하고 장점을 취함
+- 설계자의 의도에 따라 속도와 안정성을 동시에 관리할 수 있으며 GPU 기반의 효율적인 병렬 연산이 가능해진다
+
+#### 1 epoch
+- 전체 데이터를 한번에 다 넣는것 
+
+#### Batch size
+- 1epoch를 n토막으로 나눈것
 
