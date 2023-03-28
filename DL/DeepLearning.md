@@ -196,3 +196,30 @@ L1 & L2 Regularization = Weight Decay(가중치 감퇴/감소)
 #### 종류
 - Resnet18
   - ImageNet
+
+<br>
+
+2. Image Segmentation (Object Segmentation)
+   - 이미지 안에 있는 object 들을 Pixel 수준으로 분류, 식별
+
+<br>
+
+3. Image Captioning
+   - 딥러닝을 이용한 이미지 자막 생성
+
+<br>
+
+4. Visual Question Answering
+
+<br>
+
+5. 딥러닝을 활용한 독순술
+
+<br>
+
+6. TOEIC-BERT
+
+<br>
+
+7. KorBERT
+
