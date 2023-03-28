@@ -175,3 +175,24 @@ L1 & L2 Regularization = Weight Decay(가중치 감퇴/감소)
 - ***학습속도***, 학습결과 개선
 - 가중치 초기값에 크게 의존x
 - overfitting을 억제
+
+
+---
+
+<!-- 23.03.28 -->
+
+## 분야별 딥러닝 활용사례
+1. 사물검출 (Object Detection & Recognition)
+   - 이미지속에 담긴 사물의 위치와 종류를 식별
+   - 입력이미지에서 후보영역을 추출 후 CNN을 적용하여 해당 영역에 무었이 있는지 예측
+
+<br>
+
+### CNN (Convolutional Neural Network)
+- convolutional layer
+  - 이미지의 서로 다른 특성을 찾아냄
+- pooling layer
+
+#### 종류
+- Resnet18
+  - ImageNet
